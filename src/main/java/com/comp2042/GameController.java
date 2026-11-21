@@ -5,12 +5,9 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.File;
 import java.util.Random;
 
 public class GameController {
@@ -19,19 +16,13 @@ public class GameController {
     private GameView gameView;
     private Game game;
     private Stage stage;
-    private String coinSoundPath = "resources/views/res/coinSound.wav";
+    private String coinSoundPath = "resources/views/res/coinSound.wav"; // Note: This is currently unused, we will fix it later
     private Obstacle obstacle;
 
-    public static KeyCode key = KeyCode.LEFT;
-    public static KeyCode lastKey = KeyCode.LEFT;
+    // Refactored: Changed from public static to private instance variables
+    private KeyCode key = KeyCode.LEFT;
+    private KeyCode lastKey = KeyCode.LEFT;
     private boolean keyPressed = false;
-
-    private int legacyScoreMultiplier = 2;
-
-    private void calculateBonusScore() {
-        int bonus = game.getScorePoints() * legacyScoreMultiplier;
-        System.out.println("Bonus score: " + bonus);
-    }
 
     public GameController(Snake snek, Coin coin, Game game, GameView gameView, Obstacle obstacle, Stage stage) {
         this.snek = snek;
@@ -178,7 +169,7 @@ public class GameController {
             int ran = rnd.nextInt(12);
             if (ran == 1) {
                 coin = new GoldCoin(game.getWidth(), game.getHeight(), snek, obstacle);
-            } else if (ran == 1) {
+            } else if (ran == 2) { // Refactored: Fixed duplicate ran == 1 bug
                 coin = new RainbowCoin(game.getWidth(), game.getHeight(), snek, obstacle);
             } else if (ran == 3) {
                 coin = new BlueCoin(game.getWidth(), game.getHeight(), snek, obstacle);
