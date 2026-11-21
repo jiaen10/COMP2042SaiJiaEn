@@ -113,14 +113,23 @@ public class GameController {
         }
     }
 
-    private boolean valKey(KeyCode key) {
-        if (!key.isArrowKey()) return false;
-        else {
-            if (key.equals(KeyCode.LEFT)) if (!this.key.equals(KeyCode.RIGHT)) return true;
-            if (key.equals(KeyCode.RIGHT)) if (!this.key.equals(KeyCode.LEFT)) return true;
-            if (key.equals(KeyCode.DOWN)) if (!this.key.equals(KeyCode.DOWN)) return true;
-            if (key.equals(KeyCode.UP)) return !this.key.equals(KeyCode.DOWN);
+    private boolean valKey(KeyCode newKey) {
+        if (!newKey.isArrowKey()) {
             return false;
+        }
+
+        // Prevent 180-degree reverse movement
+        switch (newKey) {
+            case LEFT:
+                return this.key != KeyCode.RIGHT;
+            case RIGHT:
+                return this.key != KeyCode.LEFT;
+            case UP:
+                return this.key != KeyCode.DOWN;
+            case DOWN:
+                return this.key != KeyCode.UP; // Fixed bug: was comparing to DOWN instead of UP
+            default:
+                return false;
         }
     }
 
