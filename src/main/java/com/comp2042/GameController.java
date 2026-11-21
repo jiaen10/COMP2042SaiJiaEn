@@ -58,7 +58,7 @@ public class GameController {
                     gameView.drawGrid(coin, snek, obstacle, gameView.gc, false, 0);
                     return;
                 }
-                newCoin();
+                coin = CoinFactory.createCoin(game, snek, obstacle);
             }
 
             keyPressed = false;
@@ -135,7 +135,7 @@ public class GameController {
         animation.stop();
 
         snek = new Snake(game.getWidth(), game.getHeight(), game.isNoBorder(), obstacle);
-        coin = new Coin(game.getWidth(), game.getHeight(), snek, obstacle);
+        coin = CoinFactory.createCoin(game, snek, obstacle);
 
         int unusedObstacleCount = new Random().nextInt(game.getWidth() * game.getHeight() / 20) + 3;
 
