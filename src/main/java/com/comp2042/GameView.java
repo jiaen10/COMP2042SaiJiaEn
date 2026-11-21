@@ -19,6 +19,7 @@ public class GameView {
     public Canvas gridCanvas;
     public GraphicsContext gc;
 
+    public Label pauseLabel;
     public Label gameOverLabel;
     public Label gameWonLabel;
     public Label scoreLabel;
@@ -72,6 +73,12 @@ public class GameView {
         scoreLabel.getStylesheets().add(css);
         scoreLabel.setFont(new Font("Arial", 20));
         scoreLabel.setVisible(true);
+
+        pauseLabel = new Label("PAUSED");
+        pauseLabel.setId("pauseLabel"); // You'll need to style this in CSS later
+        pauseLabel.getStylesheets().add(css);
+        pauseLabel.setVisible(false);
+        pauseLabel.setStyle("-fx-font-size: 50; -fx-text-fill: white;"); // Basic styling for now
     }
 
     public void scaleToFullscreen(boolean fullScreen, Stage primaryStage, Obstacle obstacle, Snake snek, Coin coin) {
@@ -221,4 +228,7 @@ public class GameView {
         scoreLabel.setText("Score: " + game.getScorePoints());
     }
 
+    public void setPauseVisibility(boolean isPaused) {
+        pauseLabel.setVisible(isPaused);
+    }
 }

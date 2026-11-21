@@ -84,7 +84,13 @@ public class GameController {
         }
 
         if (event.getCode().equals(KeyCode.P)) {
-            animation.stop();
+            if (animation.getStatus() == Animation.Status.RUNNING) {
+                animation.pause();
+                gameView.setPauseVisibility(true);
+            } else if (animation.getStatus() == Animation.Status.PAUSED) {
+                animation.play();
+                gameView.setPauseVisibility(false);
+            }
         }
 
         if (event.getCode().equals(KeyCode.TAB)) {
