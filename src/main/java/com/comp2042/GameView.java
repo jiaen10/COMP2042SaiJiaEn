@@ -36,6 +36,18 @@ public class GameView {
         this.game = game;
     }
 
+    public void setLargeFonts() {
+        gameOverLabel.setStyle("-fx-font-size: 50;");
+        gameWonLabel.setStyle("-fx-font-size: 50;");
+        scoreLabel.setStyle("-fx-font-size: 35;");
+    }
+
+    public void setSmallFonts() {
+        gameOverLabel.setStyle("-fx-font-size: 15;");
+        gameWonLabel.setStyle("-fx-font-size: 15;");
+        scoreLabel.setStyle("-fx-font-size: 15;");
+    }
+
     public void makeScene(Scene scene, Snake snek, Coin coin) {
         Scene gameScene = scene;
         gridCanvas = new Canvas(gameScene.getWidth(), gameScene.getHeight());
@@ -173,14 +185,14 @@ public class GameView {
         gc.drawImage(rotatedImage, (point.x * game.getMultiplier()) * fullScale, (point.y * game.getMultiplier()) * fullScale, game.getMultiplier() * fullScale * fullScale, game.getMultiplier() * fullScale * fullScale);
     }
 
-    public void turnDir(Snake snek) {
-        if ((GameController.lastKey == KeyCode.LEFT && GameController.key == KeyCode.UP) || (GameController.lastKey == KeyCode.DOWN && GameController.key == KeyCode.RIGHT)) {
+    public void turnDir(Snake snek, KeyCode lastKey, KeyCode currentKey) {
+        if ((lastKey == KeyCode.LEFT && currentKey == KeyCode.UP) || (lastKey == KeyCode.DOWN && currentKey == KeyCode.RIGHT)) {
             turnArray[(int) snek.getHead().getX()][(int) snek.getHead().getY()] = 2;
-        } else if ((GameController.lastKey == KeyCode.LEFT && GameController.key == KeyCode.DOWN) || (GameController.lastKey == KeyCode.UP && GameController.key == KeyCode.RIGHT)) {
+        } else if ((lastKey == KeyCode.LEFT && currentKey == KeyCode.DOWN) || (lastKey == KeyCode.UP && currentKey == KeyCode.RIGHT)) {
             turnArray[(int) snek.getHead().getX()][(int) snek.getHead().getY()] = 3;
-        } else if ((GameController.lastKey == KeyCode.RIGHT && GameController.key == KeyCode.UP) || (GameController.lastKey == KeyCode.DOWN && GameController.key == KeyCode.LEFT)) {
+        } else if ((lastKey == KeyCode.RIGHT && currentKey == KeyCode.UP) || (lastKey == KeyCode.DOWN && currentKey == KeyCode.LEFT)) {
             turnArray[(int) snek.getHead().getX()][(int) snek.getHead().getY()] = 1;
-        } else if ((GameController.lastKey == KeyCode.UP && GameController.key == KeyCode.LEFT) || (GameController.lastKey == KeyCode.RIGHT && GameController.key == KeyCode.DOWN)) {
+        } else if ((lastKey == KeyCode.UP && currentKey == KeyCode.LEFT) || (lastKey == KeyCode.RIGHT && currentKey == KeyCode.DOWN)) {
             turnArray[(int) snek.getHead().getX()][(int) snek.getHead().getY()] = 4;
         } else turnArray[(int) snek.getHead().getX()][(int) snek.getHead().getY()] = 0;
     }

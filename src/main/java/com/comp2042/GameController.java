@@ -80,7 +80,7 @@ public class GameController {
             lastKey = key;
             key = event.getCode();
             keyPressed = true;
-            gameView.turnDir(snek);
+            gameView.turnDir(snek, lastKey, key);
         }
 
         if (event.getCode().equals(KeyCode.P)) {
@@ -94,16 +94,12 @@ public class GameController {
 
         if (event.getCode().equals(KeyCode.PLUS)) {
             gameView.scaleToFullscreen(true, stage, obstacle, snek, coin);
-            gameView.gameOverLabel.setStyle("-fx-font-size: 50;");
-            gameView.gameWonLabel.setStyle("-fx-font-size: 50;");
-            gameView.scoreLabel.setStyle("-fx-font-size: 35;");
+            gameView.setLargeFonts();
         }
 
         if (event.getCode().equals(KeyCode.MINUS)) {
             gameView.scaleToFullscreen(false, stage, obstacle, snek, coin);
-            gameView.gameOverLabel.setStyle("-fx-font-size: 15;");
-            gameView.gameWonLabel.setStyle("-fx-font-size: 15;");
-            gameView.scoreLabel.setStyle("-fx-font-size: 15;");
+            gameView.setSmallFonts();
         }
 
         if (event.getCode().equals(KeyCode.ESCAPE)) {
