@@ -64,3 +64,8 @@
     -fx-font-family: "SF Pixelate";
     -fx-font-size: 20;
 }
+#pauseLabel {
+    -fx-text-fill: yellow;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+}

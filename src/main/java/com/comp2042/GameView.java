@@ -75,10 +75,10 @@ public class GameView {
         scoreLabel.setVisible(true);
 
         pauseLabel = new Label("PAUSED");
-        pauseLabel.setId("pauseLabel"); // You'll need to style this in CSS later
+        pauseLabel.setId("pauseLabel");
         pauseLabel.getStylesheets().add(css);
         pauseLabel.setVisible(false);
-        pauseLabel.setStyle("-fx-font-size: 50; -fx-text-fill: white;"); // Basic styling for now
+        pauseLabel.setStyle("-fx-font-size: 50;");
     }
 
     public void scaleToFullscreen(boolean fullScreen, Stage primaryStage, Obstacle obstacle, Snake snek, Coin coin) {
