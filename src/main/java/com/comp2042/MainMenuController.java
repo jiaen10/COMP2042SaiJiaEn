@@ -42,12 +42,31 @@ public class MainMenuController {
         gameScene.setOnKeyPressed(controller::handle);
 
         gameView.makeScene(gameScene, snek, coin);
-        gamePane.getChildren().addAll(gameView.gridCanvas, gameView.gameOverLabel, gameView.gameWonLabel, gameView.scoreLabel);
-        gamePane.setPadding(new Insets(20));
-        gamePane.setAlignment(gameView.gameOverLabel, Pos.TOP_CENTER);
-        gamePane.setAlignment(gameView.gameWonLabel, Pos.TOP_CENTER);
-        gamePane.setAlignment(gameView.scoreLabel, Pos.BOTTOM_CENTER);
-    }
+
+        gamePane.getChildren().addAll(
+                gameView.gridCanvas,
+                gameView.gameOverLabel,
+                gameView.gameWonLabel,
+                gameView.scoreLabel,
+                gameView.highScoreLabel,
+                gameView.pauseLabel
+        );
+
+        gamePane.setPadding(new Insets(10));
+
+        // Center labels
+        gamePane.setAlignment(gameView.gameOverLabel, Pos.CENTER);
+        gamePane.setAlignment(gameView.gameWonLabel, Pos.CENTER);
+        gamePane.setAlignment(gameView.pauseLabel, Pos.CENTER);
+
+        // Top Left for Score
+        gamePane.setAlignment(gameView.scoreLabel, Pos.TOP_LEFT);
+
+        // Top Center for High Score, pushed down and slightly right
+        gamePane.setAlignment(gameView.highScoreLabel, Pos.TOP_CENTER);
+        StackPane.setMargin(gameView.highScoreLabel, new Insets(30, 0, 0, 10));
+
+    } // <--- THIS WAS THE MISSING BRACE
 
     public ViewManager getViewManager() {
         return viewManager;
