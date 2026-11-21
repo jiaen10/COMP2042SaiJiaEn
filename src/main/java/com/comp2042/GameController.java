@@ -9,7 +9,10 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.Random;
-
+/**
+ * The main controller for the Snake game.
+ * Handles user input, game loop updates, collision detection, and UI updates.
+ */
 public class GameController {
     private Snake snek;
     private Coin coin;
@@ -70,6 +73,7 @@ public class GameController {
             gameView.gameWon();
             gameView.gameOver(snek);
             gameView.updateScoreLabel();
+            gameView.updateHighScoreLabel();
         }
     }));
 

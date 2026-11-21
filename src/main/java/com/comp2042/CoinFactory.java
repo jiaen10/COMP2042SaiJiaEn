@@ -1,7 +1,10 @@
 package com.comp2042;
 
 import java.util.Random;
-
+/**
+ * A Factory class responsible for creating different types of Coin objects.
+ * This decouples the coin generation logic from the GameController.
+ */
 public class CoinFactory {
 
     private static final Random random = new Random();

@@ -23,6 +23,7 @@ public class GameView {
     public Label gameOverLabel;
     public Label gameWonLabel;
     public Label scoreLabel;
+    public Label highScoreLabel;
     private boolean gameOverVis = false;
     private boolean gameWonVis = false;
 
@@ -41,12 +42,14 @@ public class GameView {
         gameOverLabel.setStyle("-fx-font-size: 50;");
         gameWonLabel.setStyle("-fx-font-size: 50;");
         scoreLabel.setStyle("-fx-font-size: 35;");
+        highScoreLabel.setStyle("-fx-font-size: 35;"); // Added high score scaling
     }
 
     public void setSmallFonts() {
         gameOverLabel.setStyle("-fx-font-size: 15;");
         gameWonLabel.setStyle("-fx-font-size: 15;");
         scoreLabel.setStyle("-fx-font-size: 15;");
+        highScoreLabel.setStyle("-fx-font-size: 15;"); // Added high score scaling
     }
 
     public void makeScene(Scene scene, Snake snek, Coin coin) {
@@ -73,6 +76,12 @@ public class GameView {
         scoreLabel.getStylesheets().add(css);
         scoreLabel.setFont(new Font("Arial", 20));
         scoreLabel.setVisible(true);
+
+        highScoreLabel = new Label("High Score: " + ScoreManager.getHighScore());
+        highScoreLabel.setId("highScoreLabel");
+        highScoreLabel.getStylesheets().add(css);
+        highScoreLabel.setFont(new Font("Arial", 20));
+        highScoreLabel.setVisible(true);
 
         pauseLabel = new Label("PAUSED");
         pauseLabel.setId("pauseLabel");
@@ -230,5 +239,14 @@ public class GameView {
 
     public void setPauseVisibility(boolean isPaused) {
         pauseLabel.setVisible(isPaused);
+    }
+
+    public void updateHighScoreLabel() {
+        int currentHighScore = ScoreManager.getHighScore();
+        if (game.getScorePoints() > currentHighScore) {
+            highScoreLabel.setText("High Score: " + game.getScorePoints());
+        } else {
+            highScoreLabel.setText("High Score: " + currentHighScore);
+        }
     }
 }
